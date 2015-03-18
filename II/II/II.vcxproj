@@ -84,8 +84,6 @@
     <ClInclude Include="datatype.h" />
     <ClInclude Include="objective.h" />
     <ClInclude Include="readfile.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="tai100_20_1.txt" />
