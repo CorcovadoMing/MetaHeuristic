@@ -83,7 +83,7 @@ namespace II
 
 	void bestImprovement(Solution& solution, const std::vector<Solution>& neighbors, const std::vector<int>& scores, int& best)
 	{
-		std::size_t record = -1;
+		int record = -1;
 		for (std::size_t i = 0; i < scores.size(); i += 1)
 		{
 			if (scores[i] < best) 
