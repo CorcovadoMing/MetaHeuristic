@@ -20,16 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="readfile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objective.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="datatype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="randomrange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ii.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

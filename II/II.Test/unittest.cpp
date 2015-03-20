@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../II/readfile.h"
+#include "../II/ii.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
