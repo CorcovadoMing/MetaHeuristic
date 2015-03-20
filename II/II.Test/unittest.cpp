@@ -21,12 +21,12 @@ namespace IITest
 	public:	
 		TEST_METHOD(TestFileExists)
 		{
-			readFile("tai100_20_1.txt");
+			II::readFile("tai100_20_1.txt");
 		}
 
 		TEST_METHOD(TestReadFile)
 		{
-			const Matrix matrix = readFile("../II/tai100_20_1.txt");
+			const Matrix matrix = II::readFile("../II/tai100_20_1.txt");
 			Assert::AreEqual(int(matrix.size()), 20);
 			Assert::AreEqual(int(matrix[0].size()), 100);
 		}

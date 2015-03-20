@@ -29,6 +29,9 @@
     <ClInclude Include="datatype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="randomrange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="tai100_20_1.txt">

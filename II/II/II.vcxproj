@@ -83,6 +83,7 @@
   <ItemGroup>
     <ClInclude Include="datatype.h" />
     <ClInclude Include="objective.h" />
+    <ClInclude Include="randomrange.h" />
     <ClInclude Include="readfile.h" />
   </ItemGroup>
   <ItemGroup>

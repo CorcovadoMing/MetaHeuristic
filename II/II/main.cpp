@@ -2,26 +2,29 @@
 #include "objective.h"
 #include <iostream>
 
-Solution getInitialSolution()
+namespace II
 {
-	Solution solution;
-	return solution;
-}
-
-const int ii() 
-{
-	int best = 0;
-	Matrix matrix = readFile("tai100_20_1.txt");
-	
-	// Testing
-	Solution solution(100);
-	for (int i = 0; i < 100; i += 1) {
-		solution[i] = i;
+	Solution getInitialSolution()
+	{
+		Solution solution;
+		return solution;
 	}
-	
-	best = evaluate(solution, matrix);
 
-	return best;
+	const int run()
+	{
+		int best = 0;
+		Matrix matrix = II::readFile("tai100_20_1.txt");
+
+		// Testing
+		Solution solution(100);
+		for (int i = 0; i < 100; i += 1) {
+			solution[i] = i;
+		}
+
+		best = II::evaluate(solution, matrix);
+
+		return best;
+	}
 }
 
 int main() 
@@ -31,7 +34,7 @@ int main()
 		solution[i] = i;
 	}
 
-	std::cout << ii() << std::endl;
+	std::cout << II::run() << std::endl;
 
 	return 0;
 }
