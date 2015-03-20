@@ -12,6 +12,8 @@ namespace II
 {
 	const int StopByIterationTimes = 0;
 	const int StopByEvalutionTimes = 1;
+	const int ByBestImprovement = 0;
+	const int ByFirstImprovement = 1;
 
 	const Matrix readFile(const std::string& filename)
 	{
@@ -57,12 +59,67 @@ namespace II
 		return solution;
 	}
 
-	const int run(const int looptimes, const int stopCondition)
+	void updateNeighbors(std::vector<Solution>& neighbors, const std::size_t neighborhoodSize)
 	{
-		int best = 0;
+		for (std::size_t i = 0; i < neighborhoodSize; i += 1)
+		{
+			const int firstplace = RandomRange::random<int>(0, neighbors[i].size() - 1);
+			const int secondplace = RandomRange::random<int>(0, neighbors[i].size() - 1);
+			std::swap(neighbors[i][firstplace], neighbors[i][secondplace]);
+		}
+	}
+
+	void firstImprovement(Solution& solution, const std::vector<Solution>& neighbors, const std::vector<int>& scores, int& best)
+	{
+		for (std::size_t i = 0; i < scores.size(); i += 1)
+		{
+			if (scores[i] < best) {
+				best = scores[i];
+				solution = neighbors[i];
+				break;
+			}
+		}
+	}
+
+	void bestImprovement(Solution& solution, const std::vector<Solution>& neighbors, const std::vector<int>& scores, int& best)
+	{
+		std::size_t record = -1;
+		for (std::size_t i = 0; i < scores.size(); i += 1)
+		{
+			if (scores[i] < best) 
+			{
+				best = scores[i];
+				record = i;
+			}
+		}
+		if (record != -1)
+		{
+			solution = neighbors[record];
+		}
+	}
+
+	const int run(const int looptimes, const int stopByEvaluateTimesMode, const int firstImprovementMode, const std::size_t neighborhoodSize)
+	{
+		int best = 0, count = 0;
 		const Matrix matrix = readFile("tai100_20_1.txt");
 		Solution solution(getRandomInitialSolution());
 		best = evaluate(solution, matrix);
+
+		std::vector<int> scores(neighborhoodSize, 0);
+		while (count < looptimes) 
+		{
+			std::vector<Solution> neighbors(neighborhoodSize, solution);
+			updateNeighbors(neighbors, neighborhoodSize);
+			for (std::size_t i = 0; i < neighborhoodSize; i += 1)
+			{
+				scores[i] = evaluate(neighbors[i], matrix);
+			}
+
+			firstImprovementMode ? firstImprovement(solution, neighbors, scores, best) : bestImprovement(solution, neighbors, scores, best);
+			stopByEvaluateTimesMode ? count += neighborhoodSize : count += 1;
+			
+			std::cout << best << std::endl;
+		}
 		return best;
 	}
 }

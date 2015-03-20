@@ -4,6 +4,7 @@
 int main() 
 {
 	const int Looptimes = 1000;
-	std::cout << II::run(Looptimes, II::StopByIterationTimes) << std::endl;
+	const int neighborSize = 4;
+	std::cout << II::run(Looptimes, II::StopByEvalutionTimes, II::ByBestImprovement, neighborSize) << std::endl;
 	return 0;
 }
