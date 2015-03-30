@@ -1,2 +1,5 @@
 all:
-	cd cpp && make && make clean
+	cd cpp && make
+
+test:
+	cd cpp && make test

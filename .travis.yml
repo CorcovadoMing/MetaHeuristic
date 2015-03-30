@@ -8,4 +8,4 @@ install:
   - sudo apt-get install -qq gcc-4.8 g++-4.8 
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
 
-script: make && make clean
+script: make test
