@@ -49,10 +49,10 @@ namespace II
 		return timespan[matrix.size()];
 	}
 
-	Solution getRandomInitialSolution()
+	Solution getRandomInitialSolution(const int jobs)
 	{
-		Solution solution(100);
-		for (int i = 0; i < 100; i += 1) {
+		Solution solution(jobs);
+		for (int i = 0; i < jobs; i += 1) {
 			solution[i] = i;
 		}
 		std::shuffle(solution.begin(), solution.end(), RandomRange::RandomGenerator);
@@ -104,14 +104,14 @@ namespace II
 		return count;
 	}
 
-	const int run(const int stopByEvaluateTimesMode, const int firstImprovementMode)
+	const int run(const std::string& filename, int stopByEvaluateTimesMode, const int firstImprovementMode)
 	{
-		const Matrix matrix = readFile("tai100_20_1.txt");
+		const Matrix matrix = readFile(filename.c_str());
 		int best = 0, count = 0;
 		const int neighborhoodSize = (matrix[0].size() * matrix[0].size() - 1) / 2;
 		const int looptimes = neighborhoodSize * 1000;
 
-		Solution solution(getRandomInitialSolution());
+		Solution solution(getRandomInitialSolution(matrix[0].size()));
 		best = evaluate(solution, matrix);
 
 		while (count < looptimes) 
