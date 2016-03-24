@@ -9,10 +9,7 @@ class GeneticAlgorithm {
 public:
     GeneticAlgorithm(const double, const int);
 
-    void goal(const int, const int);
-    void printSolution() const;
-    void printAll() const;
-    const std::string getSolution() const;
+    void print() const;
 
     void initial(const int, std::vector<double> &, std::vector<double> &, const double (*func)(const std::vector<double> &));
     void selection();
@@ -22,7 +19,7 @@ public:
 
 private:
     void evaluate_();
-    const int fitnessFunction_(const Solution &) const;
+    const double fitnessFunction_(const Solution &) const;
     const double (*fitnessFunc_)(const std::vector<double> &);
     int population_;
     int best_fitness_ = INT32_MIN;
@@ -32,7 +29,7 @@ private:
     Solution best_solution_;
     double mutation_rate_;
     std::vector<Solution> solutions_;
-    std::vector<int> fitness_, selected_;
+    std::vector<double> fitness_, selected_;
 };
 
 #endif

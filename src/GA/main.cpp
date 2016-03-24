@@ -27,7 +27,7 @@ int main(int argc, const char * argv[]) {
     //    geneticAlgorithm.mutation();
     //} while (geneticAlgorithm.notConverge());
     //geneticAlgorithm.printSolution();
-    geneticAlgorithm.printAll();
+    geneticAlgorithm.print();
     //std::cout << geneticAlgorithm.getSolution() << std::endl;
     return 0;
 }

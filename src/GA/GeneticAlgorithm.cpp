@@ -8,18 +8,18 @@
 GeneticAlgorithm::GeneticAlgorithm(const double mutation_rate, const int population): mutation_rate_(mutation_rate), population_(population) {
 }
 
-void GeneticAlgorithm::printSolution() const {
-    //best_solution_.print();
-    std::cout << best_fitness_ << std::endl;
-}
-
-const std::string GeneticAlgorithm::getSolution() const {
-    return best_solution_.printString();
-}
-
-void GeneticAlgorithm::printAll() const {
+void GeneticAlgorithm::print() const {
+    std::cout << "=== Populations ===" << std::endl;
     for (size_t i = 0; i < population_; i += 1) {
-        solutions_[i].print();
+        for (size_t j = 0; j < solutions_[i].size(); j += 1) {
+	    std::cout << solutions_[i][j] << " ";
+	}
+	std::cout << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << "=== Fitness ===" << std::endl;
+    for (size_t i = 0; i < population_; i += 1) {
+        std::cout << fitness_[i] << std::endl;
     }
 }
 
@@ -30,10 +30,10 @@ void GeneticAlgorithm::initial(const int dimension, std::vector<double> &rangeMi
     last_best_fitness_ = INT32_MIN;
 
     solutions_ = std::vector<Solution>(population_, Solution());
-    fitness_ = std::vector<int>(population_, 0);
+    fitness_ = std::vector<double>(population_, 0);
     for (size_t i = 0; i < population_; i += 1) {
         for (size_t j = 0; j < dimension; j += 1) {
-	    solutions_[i].push_back(RandomRange::random(rangeMin[j], rangeMax[j]));
+	    solutions_[i].push_back(RandomRange::random<double>(rangeMin[j], rangeMax[j]));
 	}
         fitness_[i] = fitnessFunction_(solutions_[i]);
     }
@@ -78,9 +78,8 @@ void GeneticAlgorithm::evaluate_() {
     }
 }
 
-const int GeneticAlgorithm::fitnessFunction_(const Solution &solution) const {
-    // TODO
-    return 0;
+const double GeneticAlgorithm::fitnessFunction_(const Solution &solution) const {
+    return fitnessFunc_(solution);
 }
 
 const bool GeneticAlgorithm::notConverge() {
