@@ -47,6 +47,7 @@ void GeneticAlgorithm::initial(const int dimension, std::vector<double> &rangeMi
 
 void GeneticAlgorithm::selection() {
     selected_.clear();
+    // TODO: Need a better method, the current limitation is the size of population needs to be multiplied by four
     const size_t tournament_size_ = 2;
     for (size_t i = 0; i < solutions_.size(); i += tournament_size_) {
         fitness_[i] < fitness_[i+1] ? selected_.push_back((int)i) : selected_.push_back((int)i+1);
