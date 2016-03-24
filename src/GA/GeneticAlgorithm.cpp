@@ -87,7 +87,7 @@ void GeneticAlgorithm::mutation() {
 
 void GeneticAlgorithm::evaluate_() {
     for (size_t i = 0; i < solutions_.size(); i += 1) {
-        const int fitness__ = fitnessFunction_(solutions_[i]);
+        const double fitness__ = fitnessFunction_(solutions_[i]);
         if (best_fitness_ < fitness__) {
             best_fitness_ = fitness__ ;
             best_solution_ = Solution(solutions_[i]);

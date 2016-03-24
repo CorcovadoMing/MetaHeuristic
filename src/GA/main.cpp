@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
     std::cout << myfunc(param) << std::endl;
     */
 
-    GeneticAlgorithm geneticAlgorithm(0.15, 20);
+    GeneticAlgorithm geneticAlgorithm(0.5, 20);
     std::vector<double> rangeMin, rangeMax;
     rangeMin.push_back(0);
     rangeMin.push_back(100);
