@@ -59,9 +59,17 @@ void GeneticAlgorithm::selection() {
 void GeneticAlgorithm::crossover() {
     std::random_shuffle(selected_.begin(), selected_.end());
     for (int i = 0; i < selected_.size(); i += 2) {
-        // TODO
-	// fitnessFunction_(first_child) < fitnessFunction_(solutions_[selected_[i]]) ? solutions_[selected_[i]] = first_child : solutions_[selected_[i]];
-        // fitnessFunction_(second_child) < fitnessFunction_(solutions_[selected_[i+1]]) ? solutions_[selected_[i+1]] = second_child : solutions_[selected_[i+1]];
+        int cutPoint = RandomRange::random<int>(1, solutions_[0].size()-1); // excluded both-end [X][O]
+        Solution firstChild = solutions_[selected_[i]];
+	Solution secondChild = solutions_[selected_[i+1]];
+
+	for (int j = cutPoint; j < solutions_[0].size(); j += 1) {
+	    firstChild[j] = solutions_[selected_[i+1]][j];
+	    secondChild[j] = solutions_[selected_[i]][j];
+	}
+	
+	fitnessFunction_(firstChild) < fitnessFunction_(solutions_[selected_[i]]) ? solutions_[selected_[i]] = firstChild : solutions_[selected_[i]];
+        fitnessFunction_(secondChild) < fitnessFunction_(solutions_[selected_[i+1]]) ? solutions_[selected_[i+1]] = secondChild : solutions_[selected_[i+1]];
     }
 }
 

@@ -25,7 +25,7 @@ int main(int argc, const char * argv[]) {
     do {
         geneticAlgorithm.selection();
         geneticAlgorithm.crossover();
-        geneticAlgorithm.mutation();
+        //geneticAlgorithm.mutation();
     } while (geneticAlgorithm.notConverge());
     geneticAlgorithm.print();
     return 0;

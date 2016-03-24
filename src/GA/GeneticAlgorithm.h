@@ -24,12 +24,13 @@ private:
     int population_;
     int best_fitness_ = INT32_MIN;
     int last_best_fitness_ = INT32_MIN;
-    const int converge_ = 3;
+    const int converge_ = 30;
     int still_ = converge_;
     Solution best_solution_;
     double mutation_rate_;
     std::vector<Solution> solutions_;
-    std::vector<double> fitness_, selected_;
+    std::vector<double> fitness_;
+    std::vector<int> selected_;
 };
 
 #endif
