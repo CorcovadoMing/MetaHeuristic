@@ -29,6 +29,14 @@ void GeneticAlgorithm::print() const {
     std::cout << "Fitness: " << best_fitness_ << std::endl;
 }
 
+const std::vector<double> GeneticAlgorithm::getResult() const {
+    return best_solution_;
+}
+
+const double GeneticAlgorithm::getFitness() const {
+    return best_fitness_;
+}
+
 void GeneticAlgorithm::initial(const int dimension, std::vector<double> &rangeMin, std::vector<double> &rangeMax, const double (*func)(const std::vector<double> &)) {
     rangeMax_ = rangeMax;
     rangeMin_ = rangeMin;

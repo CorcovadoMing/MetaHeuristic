@@ -7,15 +7,7 @@ const double myfunc(const std::vector<double> &param) {
 }
 
 int main(int argc, const char * argv[]) {
-
-    /*
-    std::vector<double> param;
-    param.push_back(1);
-    param.push_back(2);
-    std::cout << myfunc(param) << std::endl;
-    */
-
-    GeneticAlgorithm geneticAlgorithm(0.5, 20);
+    GeneticAlgorithm geneticAlgorithm(0.6, 20);
     std::vector<double> rangeMin, rangeMax;
     rangeMin.push_back(0);
     rangeMin.push_back(100);
@@ -27,6 +19,13 @@ int main(int argc, const char * argv[]) {
         geneticAlgorithm.crossover();
         geneticAlgorithm.mutation();
     } while (geneticAlgorithm.notConverge());
-    geneticAlgorithm.print();
+    //geneticAlgorithm.print(); // for Debugging
+
+    std::vector<double> result = geneticAlgorithm.getResult();
+    for (const auto i : result) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl << "Fitness: " << geneticAlgorithm.getFitness() << std::endl;
+
     return 0;
 }

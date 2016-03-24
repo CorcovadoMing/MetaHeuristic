@@ -8,6 +8,8 @@
 class GeneticAlgorithm {
 public:
     GeneticAlgorithm(const double, const int);
+    const std::vector<double> getResult() const;
+    const double getFitness() const;
     void print() const;
     void initial(const int, std::vector<double> &, std::vector<double> &, const double (*func)(const std::vector<double> &));
     void selection();
