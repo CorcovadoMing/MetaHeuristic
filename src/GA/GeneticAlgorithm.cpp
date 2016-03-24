@@ -21,6 +21,12 @@ void GeneticAlgorithm::print() const {
     for (size_t i = 0; i < population_; i += 1) {
         std::cout << fitness_[i] << std::endl;
     }
+    std::cout << std::endl;
+    std::cout << "=== Best Solution ===" << std::endl;
+    for (size_t i = 0; i < best_solution_.size(); i += 1) {
+        std::cout << best_solution_[i] << " ";
+    }
+    std::cout << "Fitness: " << best_fitness_ << std::endl;
 }
 
 void GeneticAlgorithm::initial(const int dimension, std::vector<double> &rangeMin, std::vector<double> &rangeMax, const double (*func)(const std::vector<double> &)) {
@@ -70,7 +76,7 @@ void GeneticAlgorithm::mutation() {
 void GeneticAlgorithm::evaluate_() {
     for (size_t i = 0; i < solutions_.size(); i += 1) {
         const int fitness__ = fitnessFunction_(solutions_[i]);
-        if (best_fitness_ > fitness__) {
+        if (best_fitness_ < fitness__) {
             best_fitness_ = fitness__ ;
             best_solution_ = Solution(solutions_[i]);
         }
@@ -86,7 +92,7 @@ const bool GeneticAlgorithm::notConverge() {
     evaluate_();
     if (best_fitness_ == last_best_fitness_) {
         if (still_ == 0 ) return false;
-        else still_--;
+        else still_ -= 1;
         return true;
     }
     else {
