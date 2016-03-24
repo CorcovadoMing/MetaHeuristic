@@ -8,9 +8,7 @@
 class GeneticAlgorithm {
 public:
     GeneticAlgorithm(const double, const int);
-
     void print() const;
-
     void initial(const int, std::vector<double> &, std::vector<double> &, const double (*func)(const std::vector<double> &));
     void selection();
     void crossover();
@@ -31,6 +29,7 @@ private:
     std::vector<Solution> solutions_;
     std::vector<double> fitness_;
     std::vector<int> selected_;
+    std::vector<double> rangeMin_, rangeMax_;
 };
 
 #endif

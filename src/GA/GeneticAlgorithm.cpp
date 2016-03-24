@@ -30,6 +30,8 @@ void GeneticAlgorithm::print() const {
 }
 
 void GeneticAlgorithm::initial(const int dimension, std::vector<double> &rangeMin, std::vector<double> &rangeMax, const double (*func)(const std::vector<double> &)) {
+    rangeMax_ = rangeMax;
+    rangeMin_ = rangeMin;
     fitnessFunc_ = func;
     still_ = converge_;
     best_fitness_ = INT32_MIN;
@@ -75,9 +77,10 @@ void GeneticAlgorithm::crossover() {
 
 void GeneticAlgorithm::mutation() {
     for (size_t i = 0; i < population_; i += 1) {
-        if ( solutions_[i].size() > 2 && RandomRange::random<double>(0, 1) < mutation_rate_) {
-            const int mutation_point = RandomRange::random<int>(0, (int)solutions_[i].size() - 3);
-            // TODO
+        for (size_t j = 0; j < solutions_[i].size(); j += 1) {
+	    if (RandomRange::random<double>(0, 1) < mutation_rate_) {
+	        solutions_[i][j] = RandomRange::random<double>(rangeMin_[j], rangeMax_[j]);
+	    }
 	}
     }
 }
