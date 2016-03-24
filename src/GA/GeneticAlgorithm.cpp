@@ -23,7 +23,8 @@ void GeneticAlgorithm::printAll() const {
     }
 }
 
-void GeneticAlgorithm::initial(const int dimension, std::vector<double> &rangeMin, std::vector<double> &rangeMax) {
+void GeneticAlgorithm::initial(const int dimension, std::vector<double> &rangeMin, std::vector<double> &rangeMax, const double (*func)(const std::vector<double> &)) {
+    fitnessFunc_ = func;
     still_ = converge_;
     best_fitness_ = INT32_MIN;
     last_best_fitness_ = INT32_MIN;
