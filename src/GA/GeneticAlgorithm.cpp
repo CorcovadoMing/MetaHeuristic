@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <fstream>
 
-GeneticAlgorithm::GeneticAlgorithm(const double mutation_rate): mutation_rate_(mutation_rate) {
+GeneticAlgorithm::GeneticAlgorithm(const double mutation_rate, const int population): mutation_rate_(mutation_rate), population_(population) {
 }
 
 void GeneticAlgorithm::printSolution() const {

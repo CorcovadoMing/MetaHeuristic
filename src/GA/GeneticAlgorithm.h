@@ -7,7 +7,8 @@
 
 class GeneticAlgorithm {
 public:
-    GeneticAlgorithm(const double);
+    GeneticAlgorithm(const double, const int);
+
     void goal(const int, const int);
     void printSolution() const;
     const std::string getSolution() const;
@@ -20,10 +21,11 @@ public:
 private:
     void evaluate_();
     const int fitnessFunction_(const Solution &) const;
+    
     int population_;
     int best_fitness_ = INT32_MIN;
     int last_best_fitness_ = INT32_MIN;
-    const int converge_ = 40;
+    const int converge_ = 3;
     int still_ = converge_;
     Solution best_solution_;
     double mutation_rate_;

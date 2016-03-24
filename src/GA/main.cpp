@@ -2,7 +2,7 @@
 #include "GeneticAlgorithm.h"
 
 int main(int argc, const char * argv[]) {
-    GeneticAlgorithm geneticAlgorithm(0.15);
+    GeneticAlgorithm geneticAlgorithm(0.15, 20);
     geneticAlgorithm.initial();
     do {
         geneticAlgorithm.selection();
