@@ -12,16 +12,17 @@ public:
     const std::string printString() const;
     const size_t size() const { return solution_.size(); }
     const int gene(const size_t index) const { return solution_[index]; }
-    void push_back(const int data) { solution_.push_back(data); }
+    void push_back(const double data) { solution_.push_back(data); }
     void pop_back() { solution_.pop_back(); }
-    void insteadAll(std::vector<int> &);
-    const std::vector<int> intersect(Solution) const;
+    void insteadAll(std::vector<double> &);
+    
+    const std::vector<double> intersect(Solution) const;
     void exchangeWithCutValue(Solution &, const int);
-    void concatenateWith(const std::vector<int> &);
+    void concatenateWith(const std::vector<double> &);
     void cutTailsFrom(const int index);
 
 private:
-    std::vector<int> solution_;
+    std::vector<double> solution_;
 };
 
 #endif

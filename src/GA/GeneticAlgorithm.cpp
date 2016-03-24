@@ -15,19 +15,25 @@ void GeneticAlgorithm::printSolution() const {
 
 const std::string GeneticAlgorithm::getSolution() const {
     return best_solution_.printString();
-
 }
 
-void GeneticAlgorithm::initial() {
+void GeneticAlgorithm::printAll() const {
+    for (size_t i = 0; i < population_; i += 1) {
+        solutions_[i].print();
+    }
+}
+
+void GeneticAlgorithm::initial(const int dimension, std::vector<double> &rangeMin, std::vector<double> &rangeMax) {
     still_ = converge_;
     best_fitness_ = INT32_MIN;
     last_best_fitness_ = INT32_MIN;
 
     solutions_ = std::vector<Solution>(population_, Solution());
-    fitness_ = std::vector<int>(solutions_.size(), 0);
-    for (size_t i = 0; i < solutions_.size(); i += 1) {
-        std::vector<int> path;
-        solutions_[i].insteadAll(path);
+    fitness_ = std::vector<int>(population_, 0);
+    for (size_t i = 0; i < population_; i += 1) {
+        for (size_t j = 0; j < dimension; j += 1) {
+	    solutions_[i].push_back(RandomRange::random(rangeMin[j], rangeMax[j]));
+	}
         fitness_[i] = fitnessFunction_(solutions_[i]);
     }
 }

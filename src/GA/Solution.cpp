@@ -25,12 +25,12 @@ const std::string Solution::printString() const {
     return ss.str();
 }
 
-void Solution::insteadAll(std::vector<int> &other) {
+void Solution::insteadAll(std::vector<double> &other) {
     solution_.swap(other);
 }
 
-const std::vector<int> Solution::intersect(Solution other) const {
-    std::vector<int> my(solution_), intersect;
+const std::vector<double> Solution::intersect(Solution other) const {
+    std::vector<double> my(solution_), intersect;
     my.erase(my.begin());
     other.solution_.erase(other.solution_.begin());
     my.pop_back();
@@ -42,7 +42,7 @@ const std::vector<int> Solution::intersect(Solution other) const {
 }
 
 void Solution::exchangeWithCutValue(Solution &other, const int cut_value) {
-    std::vector<int> my_tails, other_tails;
+    std::vector<double> my_tails, other_tails;
     while (solution_[solution_.size()-1] != cut_value) {
         my_tails.push_back(solution_[solution_.size()-1]);
         solution_.pop_back();
@@ -61,7 +61,7 @@ void Solution::exchangeWithCutValue(Solution &other, const int cut_value) {
     }
 }
 
-void Solution::concatenateWith(const std::vector<int> &tails) {
+void Solution::concatenateWith(const std::vector<double> &tails) {
     for (const auto i : tails) {
         solution_.push_back(i);
     }

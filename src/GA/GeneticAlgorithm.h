@@ -11,8 +11,10 @@ public:
 
     void goal(const int, const int);
     void printSolution() const;
+    void printAll() const;
     const std::string getSolution() const;
-    void initial();
+
+    void initial(const int, std::vector<double> &, std::vector<double> &);
     void selection();
     void crossover();
     void mutation();
