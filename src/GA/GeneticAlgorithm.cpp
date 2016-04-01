@@ -37,21 +37,25 @@ const double GeneticAlgorithm::getFitness() const {
     return best_fitness_;
 }
 
-void GeneticAlgorithm::initial(const int dimension, std::vector<double> &rangeMin, std::vector<double> &rangeMax, const double (*func)(const std::vector<double> &)) {
+void GeneticAlgorithm::initial(const int dimension, const int int_index, std::vector<double> &rangeMin, std::vector<double> &rangeMax, const double (*func)(const std::vector<double> &)) {
     rangeMax_ = rangeMax;
     rangeMin_ = rangeMin;
     fitnessFunc_ = func;
     still_ = converge_;
     best_fitness_ = INT32_MIN;
     last_best_fitness_ = INT32_MIN;
+    int_index_ = int_index;
 
     solutions_ = std::vector<Solution>(population_, Solution());
     fitness_ = std::vector<double>(population_, 0);
     for (size_t i = 0; i < population_; i += 1) {
         for (size_t j = 0; j < dimension; j += 1) {
-	    solutions_[i].push_back(RandomRange::random<double>(rangeMin[j], rangeMax[j]));
-	}
-        fitness_[i] = fitnessFunction_(solutions_[i]);
+            if (j < int_index)
+                solutions_[i].push_back(RandomRange::random<int>(rangeMin[j], rangeMax[j]));
+            else
+                solutions_[i].push_back(RandomRange::random<double>(rangeMin[j], rangeMax[j]));
+	    }
+            fitness_[i] = fitnessFunction_(solutions_[i]);
     }
 }
 
@@ -87,7 +91,10 @@ void GeneticAlgorithm::mutation() {
     for (size_t i = 0; i < population_; i += 1) {
         for (size_t j = 0; j < solutions_[i].size(); j += 1) {
 	    if (RandomRange::random<double>(0, 1) < mutation_rate_) {
-	        solutions_[i][j] = RandomRange::random<double>(rangeMin_[j], rangeMax_[j]);
+            if (j < int_index_)
+	            solutions_[i][j] = RandomRange::random<int>(rangeMin_[j], rangeMax_[j]);
+	        else
+                solutions_[i][j] = RandomRange::random<double>(rangeMin_[j], rangeMax_[j]);
 	    }
 	}
     }

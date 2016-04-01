@@ -3,13 +3,13 @@
 #include "GeneticAlgorithm.h"
 
 const double myfunc(const std::vector<double> &param) {
-    return param[0] + param[1];
+    return param[0] + param[1] + param[2] + param[3];
 }
 
 int main(int argc, const char * argv[]) {
     GeneticAlgorithm geneticAlgorithm(0.6, 20);
-    std::vector<double> rangeMin {0, 100}, rangeMax {10, 110};
-    geneticAlgorithm.initial(2, rangeMin, rangeMax, myfunc);
+    std::vector<double> rangeMin {0, 0, 0, 100}, rangeMax {5, 10, 10, 110};
+    geneticAlgorithm.initial(4, 2, rangeMin, rangeMax, myfunc);
     do {
         geneticAlgorithm.selection();
         geneticAlgorithm.crossover();

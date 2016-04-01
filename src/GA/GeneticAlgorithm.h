@@ -11,7 +11,7 @@ public:
     const std::vector<double> getResult() const;
     const double getFitness() const;
     void print() const;
-    void initial(const int, std::vector<double> &, std::vector<double> &, const double (*func)(const std::vector<double> &));
+    void initial(const int, const int, std::vector<double> &, std::vector<double> &, const double (*func)(const std::vector<double> &));
     void selection();
     void crossover();
     void mutation();
@@ -22,6 +22,7 @@ private:
     const double fitnessFunction_(const Solution &) const;
     const double (*fitnessFunc_)(const std::vector<double> &);
     int population_;
+    int int_index_;
     double best_fitness_ = INT32_MIN;
     double last_best_fitness_ = INT32_MIN;
     const int converge_ = 3;
