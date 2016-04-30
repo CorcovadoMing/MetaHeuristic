@@ -9,7 +9,10 @@ const double myfunc(const std::vector<double> &param) {
 int main(int argc, const char * argv[]) {
     GeneticAlgorithm geneticAlgorithm(0.6, 20);
     std::vector<double> rangeMin {0, 100}, rangeMax {10, 110};
-    geneticAlgorithm.initial(2, rangeMin, rangeMax, myfunc);
+    MutationType mutation_type;
+    mutation_type.type = Distribution::Normal;
+    mutation_type.std = 0.2;
+    geneticAlgorithm.initial(2, rangeMin, rangeMax, myfunc, mutation_type);
     do {
         geneticAlgorithm.selection();
         geneticAlgorithm.crossover();
