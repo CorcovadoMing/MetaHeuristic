@@ -22,7 +22,7 @@ public:
     const std::vector<double> getResult() const;
     const double getFitness() const;
     void print() const;
-    void initial(const int, std::vector<double> &, std::vector<double> &, const double (*func)(const std::vector<double> &), const MutationType &);
+    void initial(const int, const int, std::vector<double> &, std::vector<double> &, const double (*func)(const std::vector<double> &), const MutationType &);
     void selection();
     void crossover();
     void mutation();
@@ -35,6 +35,7 @@ private:
     int mutation_type_;
     double mutation_std_;
     int population_;
+    int int_index_;
     double best_fitness_ = INT32_MIN;
     double last_best_fitness_ = INT32_MIN;
     const int converge_ = 3;
