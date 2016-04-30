@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
     // Choose one of (Distribution::Uniform, Distribution::Normal)
     mutation_type.type = Distribution::Normal;
     // Only affect to Distribution::Normal
-    mutation_type.std = 0.2;
+    mutation_type.std = 0.1;
     
     // Initial <total dimenstions>, <# integers>, <rangeMin>, <rangeMax>, <custom fitness function>, <mutation type>
     geneticAlgorithm.initial(4, 2, rangeMin, rangeMax, myfunc, mutation_type);

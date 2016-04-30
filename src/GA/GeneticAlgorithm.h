@@ -13,7 +13,7 @@ namespace Distribution {
 class MutationType {
 public:
     int type = 0;
-    int std = 0.2;
+    double std = 0.2;
 };
 
 class GeneticAlgorithm {
