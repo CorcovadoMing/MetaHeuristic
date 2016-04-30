@@ -3,7 +3,7 @@
 #include "GeneticAlgorithm.h"
 
 const double myfunc(const std::vector<double> &param) {
-    return param[0] + param[1] + param[2] + param[3];
+    return param[0]*100 + param[1] + param[2] + param[3];
 }
 
 int main(int argc, const char * argv[]) {
