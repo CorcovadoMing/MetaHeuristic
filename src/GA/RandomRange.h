@@ -29,6 +29,17 @@ namespace RandomRange {
             return uniform_real(rng);
         }
     }
+    
+    template <class T>
+    T normal(T mean, T std) {
+        std::normal_distribution<> normal(mean, std);
+        if (TypeIsInt<T>::value) {
+            return (int)normal(rng);
+        }
+        else {
+            return (T)normal(rng);
+        }
+    }
 }
 
 #endif
