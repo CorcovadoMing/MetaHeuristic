@@ -2,5 +2,5 @@
 #include "../src/GeneticAlgorithm.h"
 
 TEST_CASE( "GeneticAlgorithm APIs" ) {
-	GeneticAlgorithm ga(20, 0.6);
+    GeneticAlgorithm ga(20, 0.6);
 }
