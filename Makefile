@@ -1,6 +1,18 @@
+.PHONY: test clean
+
+CPP=g++
+CPPFLAGS=-O3 -std=c++11
+SRC_FOLDER=src
+TEST_FILE=test/test.cpp
+MAIN_FILE=main.cpp
+EXE=mhpsga
+
 all:
-	cd src && make
-clean:
-	cd src && make clean
+	@$(CPP) $(CPPFLAGS) $(SRC_FOLDER)/*.cpp -o $(EXE)
+
 test:
-	cd src && make test
+	@$(CPP) $(CPPFLAGS) $(SRC_FOLDER)/*.cpp -o $(EXE) && ./$(EXE)
+
+clean:
+	@rm ./$(EXE)
+
