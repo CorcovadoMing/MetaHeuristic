@@ -9,9 +9,6 @@ namespace Distribution {
     const int Normal = 1;
 }
 
-GeneticAlgorithm::GeneticAlgorithm(const double mutation_rate, const int population): mutation_rate_(mutation_rate), population_(population) {
-}
-
 void GeneticAlgorithm::print() const {
     std::cout << "=== Populations ===" << std::endl;
     for (size_t i = 0; i < population_; i += 1) {
@@ -41,25 +38,29 @@ const double GeneticAlgorithm::getFitness() const {
     return best_fitness_;
 }
 
-void GeneticAlgorithm::initial(const int dimension, const int int_index, std::vector<double> &rangeMin, std::vector<double> &rangeMax, const double (*func)(const std::vector<double> &), const MutationType &mutation_type) {
-    rangeMax_ = rangeMax;
-    rangeMin_ = rangeMin;
-    fitnessFunc_ = func;
+void GeneticAlgorithm::initial(const Parameters &Param) {
+    rangeMax_ = Param.RangeMax;
+    rangeMin_ = Param.RangeMin;
+    fitnessFunc_ = Param.FitnessFunction;
     still_ = converge_;
     best_fitness_ = INT32_MIN;
     last_best_fitness_ = INT32_MIN;
-    mutation_type_ = mutation_type.type;
-    mutation_std_ = mutation_type.std;
-    int_index_ = int_index;
+    mutation_type_ = Param.MutationType;
+    mutation_std_ = Param.MutationNormalStd;
+    mutation_rate_ = Param.MutationRate;
+    int_index_ = Param.DimensionsInt;
+    population_ = Param.Populations;
+
+    const int dimension = Param.Dimensions;
 
     solutions_ = std::vector<Solution>(population_, Solution());
     fitness_ = std::vector<double>(population_, 0);
     for (size_t i = 0; i < population_; i += 1) {
         for (size_t j = 0; j < dimension; j += 1) {
-            if (j < int_index)
-                solutions_[i].push_back(RandomRange::random<int>(rangeMin[j], rangeMax[j]));
+            if (j < int_index_)
+                solutions_[i].push_back(RandomRange::random<int>(rangeMin_[j], rangeMax_[j]));
             else
-                solutions_[i].push_back(RandomRange::random<double>(rangeMin[j], rangeMax[j]));
+                solutions_[i].push_back(RandomRange::random<double>(rangeMin_[j], rangeMax_[j]));
 	    }
             fitness_[i] = fitnessFunction_(solutions_[i]);
     }

@@ -11,19 +11,25 @@ namespace Distribution {
     extern const int Normal;
 }
 
-class MutationType {
+class Parameters {
 public:
-    int type = 0;
-    double std = 0.2;
+    int Populations = 20;
+    double MutationRate = 0.6;
+    int Dimensions = 0;
+    int DimensionsInt = 0;
+    std::vector<double> RangeMin, RangeMax;
+    const double (*FitnessFunction) (const std::vector<double> &);
+    int MutationType = 0;
+    double MutationNormalStd = 0.2;
 };
 
 class GeneticAlgorithm {
 public:
-    GeneticAlgorithm(const double, const int);
+    GeneticAlgorithm() {}
     const std::vector<double> getResult() const;
     const double getFitness() const;
     void print() const;
-    void initial(const int, const int, std::vector<double> &, std::vector<double> &, const double (*func)(const std::vector<double> &), const MutationType &);
+    void initial(const Parameters &);
     void selection();
     void crossover();
     void mutation();
@@ -32,7 +38,7 @@ public:
 private:
     void evaluate_();
     const double fitnessFunction_(const Solution &) const;
-    const double (*fitnessFunc_)(const std::vector<double> &);
+    const double (*fitnessFunc_) (const std::vector<double> &);
     int mutation_type_;
     double mutation_std_;
     int population_;
