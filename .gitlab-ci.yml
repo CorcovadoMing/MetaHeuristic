@@ -1,0 +1,17 @@
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - make
+  tags: 
+    - gcc5
+
+test:
+  stage: test
+  script:
+    - make test
+  tags:
+    - gcc5
