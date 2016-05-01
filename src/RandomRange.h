@@ -4,9 +4,8 @@
 #include <random>
 
 namespace RandomRange {
-
-    std::random_device rd;
-    std::mt19937 rng(rd());
+    static std::random_device rd;
+    static std::mt19937 rng(rd());
 
     template <class T>
     struct TypeIsInt {
@@ -17,6 +16,16 @@ namespace RandomRange {
     struct TypeIsInt<int> {
         static const bool value = true;
     };
+
+    template <class T>
+    static const bool isInt(T num) {
+        if (TypeIsInt<T>::value) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     template <class T>
     T random(T min, T max) {

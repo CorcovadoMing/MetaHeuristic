@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include "RandomRange.h"
 #include "Solution.h"
 
 namespace Distribution {

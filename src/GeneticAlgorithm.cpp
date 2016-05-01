@@ -1,6 +1,5 @@
 #include "GeneticAlgorithm.h"
 #include "Solution.h"
-#include "RandomRange.h"
 #include <vector>
 #include <algorithm>
 #include <fstream>
