@@ -5,13 +5,16 @@ CPPFLAGS=-O3 -std=c++11
 SRC_FOLDER=src
 TEST_FOLDER=test
 MAIN_FILE=main.cpp
-EXE=mhpsga
+EXE=run
 
-all:
-	@$(CPP) $(CPPFLAGS) $(SRC_FOLDER)/*.cpp $(MAIN_FILE) -o $(EXE)
+pso:
+	@$(CPP) $(CPPFLAGS) $(SRC_FOLDER)/pso/*.cpp pso_$(MAIN_FILE) -o $(EXE)
+
+ga:
+	@$(CPP) $(CPPFLAGS) $(SRC_FOLDER)/ga/*.cpp ga_$(MAIN_FILE) -o $(EXE)
 
 test:
-	@$(CPP) $(CPPFLAGS) $(SRC_FOLDER)/*.cpp $(TEST_FOLDER)/*.cpp -o $(EXE) && ./$(EXE)
+	@$(CPP) $(CPPFLAGS) $(SRC_FOLDER)/ga/*.cpp $(TEST_FOLDER)/ga/*.cpp -o $(EXE) && ./$(EXE)
 
 clean:
 	@rm ./$(EXE)
