@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "src/ga/GeneticAlgorithm.h"
+#include "src/pso/ParticleSwarmOptimizer.h"
 
 const double myfunc(const std::vector<double> &param) {
     return param[0]*100 + param[1] + param[2] + param[3];

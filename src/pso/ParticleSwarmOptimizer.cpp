@@ -1,4 +1,4 @@
-#include "GeneticAlgorithm.h"
+#include "ParticleSwarmOptimizer.h"
 #include "Solution.h"
 #include <vector>
 #include <algorithm>

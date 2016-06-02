@@ -1,5 +1,5 @@
-#ifndef __GeneticAlgorithm__
-#define __GeneticAlgorithm__
+#ifndef __ParticleSwarmOptimizer__
+#define __ParticleSwarmOptimizer__
 
 #include <vector>
 #include <iostream>
