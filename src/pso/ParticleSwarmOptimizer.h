@@ -25,6 +25,10 @@ public:
     const double getFitness() const;
     void print() const;
     void initial(const Parameters &);
+    void updatePBest();
+    void updateGBest();
+    void updateVelocity();
+    void updatePosition();
 
 private:
     void evaluate_();

@@ -40,6 +40,9 @@ void ParticleSwarmOptimizer::initial(const Parameters &Param) {
     best_fitness_ = INT32_MIN;
     int_index_ = Param.DimensionsInt;
     population_ = Param.Populations;
+    w_ = Param.w;
+    c1_ = Param.c1;
+    c2_ = Param.c2;
 
     const int dimension = Param.Dimensions;
 
