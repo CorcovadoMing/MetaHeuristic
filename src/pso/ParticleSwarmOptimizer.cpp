@@ -100,7 +100,7 @@ void ParticleSwarmOptimizer::initial(const Parameters &Param) {
                 positions_[i].push_back(RandomRange::random<int>(rangeMin_[j], rangeMax_[j]));
             else
                 positions_[i].push_back(RandomRange::random<double>(rangeMin_[j], rangeMax_[j]));
-            velocities_[i].push_back(RandomRange::random<double>(rangeMin_[j], rangeMax_[j]));
+            velocities_[i].push_back(RandomRange::random<double>(-rangeMax_[j], rangeMax_[j]));
 	}
     }
 
