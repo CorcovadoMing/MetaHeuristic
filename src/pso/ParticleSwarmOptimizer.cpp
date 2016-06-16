@@ -10,7 +10,10 @@ void ParticleSwarmOptimizer::print() const {
         for (size_t j = 0; j < positions_[i].size(); j += 1) {
 	    std::cout << positions_[i][j] << " ";
 	}
-	std::cout << "\tVelocity: " << velocity_[i];
+	std::cout << "\tVelocity: ";
+        for (size_t j = 0; j < velocities_[i].size(); j += 1) {
+	    std::cout << velocities_[i][j] << " ";
+	}
         std::cout << "\tPBest: ";
         for (size_t j = 0; j < pbest_positions_[i].size(); j += 1) {
 	    std::cout << pbest_positions_[i][j] << " ";
@@ -43,10 +46,17 @@ const double ParticleSwarmOptimizer::getFitness() const {
 const std::vector<double> ParticleSwarmOptimizer::runWithIteration(double iter, const Parameters &param) {
     initial(param);
     for (size_t i = 0; i < iter; i += 1) {
-        ;
+        updateVelocity();
+        updatePosition();
     }
     return getResult();
 }
+
+void ParticleSwarmOptimizer::updateVelocity() {
+}
+
+void ParticleSwarmOptimizer::updatePosition() {
+} 
 
 void ParticleSwarmOptimizer::initial(const Parameters &Param) {
     rangeMax_ = Param.RangeMax;
@@ -62,6 +72,7 @@ void ParticleSwarmOptimizer::initial(const Parameters &Param) {
     const int dimension = Param.Dimensions;
 
     positions_ = std::vector<Solution>(population_, Solution());
+    velocities_ = std::vector<Solution>(population_, Solution());
     fitness_ = std::vector<double>(population_, 0);
     pbest_fitness_ = std::vector<double>(population_, 0);
     for (size_t i = 0; i < population_; i += 1) {
@@ -70,11 +81,8 @@ void ParticleSwarmOptimizer::initial(const Parameters &Param) {
                 positions_[i].push_back(RandomRange::random<int>(rangeMin_[j], rangeMax_[j]));
             else
                 positions_[i].push_back(RandomRange::random<double>(rangeMin_[j], rangeMax_[j]));
-	    }
-    }
-
-    for (size_t i = 0; i < population_; i += 1) {
-	velocity_.push_back(RandomRange::random<double>(0, 1));
+            velocities_[i].push_back(0);
+	}
     }
 
     pbest_positions_ = positions_;

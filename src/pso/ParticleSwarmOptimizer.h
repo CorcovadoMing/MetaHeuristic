@@ -38,8 +38,8 @@ private:
     int int_index_;
     double best_fitness_ = INT32_MIN;
     Solution best_solution_;
-    std::vector<Solution> positions_, pbest_positions_;
-    std::vector<double> fitness_, pbest_fitness_, velocity_, gbest_position_;
+    std::vector<Solution> positions_, velocities_, pbest_positions_;
+    std::vector<double> fitness_, pbest_fitness_, gbest_position_;
     std::vector<double> rangeMin_, rangeMax_;
     double w_, c1_, c2_;
 };
