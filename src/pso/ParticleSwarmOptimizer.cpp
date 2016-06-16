@@ -67,8 +67,12 @@ void ParticleSwarmOptimizer::updateVelocity() {
 void ParticleSwarmOptimizer::updatePosition() {
     for (size_t i = 0; i < population_; i += 1) {
         for (size_t j = 0; j < positions_[i].size(); j += 1) {
-            // TODO need to check the boundary
-            positions_[i][j] = positions_[i][j] + velocities_[i][j];
+            if (j < int_index_) {
+                positions_[i][j] = std::max(std::min(int(positions_[i][j] + velocities_[i][j]), int(rangeMax_[j])), int(rangeMin_[j]));
+            }
+            else {
+                positions_[i][j] = std::max(std::min(positions_[i][j] + velocities_[i][j], rangeMax_[j]), rangeMin_[j]);
+            }
         }
     }
 } 
@@ -96,7 +100,7 @@ void ParticleSwarmOptimizer::initial(const Parameters &Param) {
                 positions_[i].push_back(RandomRange::random<int>(rangeMin_[j], rangeMax_[j]));
             else
                 positions_[i].push_back(RandomRange::random<double>(rangeMin_[j], rangeMax_[j]));
-            velocities_[i].push_back(0);
+            velocities_[i].push_back(RandomRange::random<double>(rangeMin_[j], rangeMax_[j]));
 	}
     }
 
