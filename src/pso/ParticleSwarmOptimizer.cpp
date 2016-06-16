@@ -10,8 +10,15 @@ void ParticleSwarmOptimizer::print() const {
         for (size_t j = 0; j < positions_[i].size(); j += 1) {
 	    std::cout << positions_[i][j] << " ";
 	}
-	std::cout << "\tVelocity: " << velocity_[i] << std::endl;
+	std::cout << "\tVelocity: " << velocity_[i];
+        std::cout << "\tPBest: ";
+        for (size_t j = 0; j < pbest_positions_[i].size(); j += 1) {
+	    std::cout << pbest_positions_[i][j] << " ";
+	}
+        std::cout << "\tPBest Fitness: " << pbest_fitness_[i]; 
+        std::cout << std::endl;
     }
+
     std::cout << std::endl;
     std::cout << "=== Fitness ===" << std::endl;
     for (size_t i = 0; i < population_; i += 1) {
@@ -33,6 +40,14 @@ const double ParticleSwarmOptimizer::getFitness() const {
     return best_fitness_;
 }
 
+const std::vector<double> ParticleSwarmOptimizer::runWithIteration(double iter, const Parameters &param) {
+    initial(param);
+    for (size_t i = 0; i < iter; i += 1) {
+        ;
+    }
+    return getResult();
+}
+
 void ParticleSwarmOptimizer::initial(const Parameters &Param) {
     rangeMax_ = Param.RangeMax;
     rangeMin_ = Param.RangeMin;
@@ -48,6 +63,7 @@ void ParticleSwarmOptimizer::initial(const Parameters &Param) {
 
     positions_ = std::vector<Solution>(population_, Solution());
     fitness_ = std::vector<double>(population_, 0);
+    pbest_fitness_ = std::vector<double>(population_, 0);
     for (size_t i = 0; i < population_; i += 1) {
         for (size_t j = 0; j < dimension; j += 1) {
             if (j < int_index_)
@@ -61,6 +77,7 @@ void ParticleSwarmOptimizer::initial(const Parameters &Param) {
 	velocity_.push_back(RandomRange::random<double>(0, 1));
     }
 
+    pbest_positions_ = positions_;
     evaluate_();
 }
 
@@ -71,6 +88,10 @@ void ParticleSwarmOptimizer::evaluate_() {
             best_fitness_ = fitness__ ;
             best_solution_ = Solution(positions_[i]);
         }
+        if (pbest_fitness_[i] <= fitness__) {
+            pbest_fitness_[i] = fitness__;
+            pbest_positions_[i] = positions_[i];
+        } 
         fitness_[i] = fitness__;
     }
 }
