@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "../src/GeneticAlgorithm.h"
+#include "../../src/ga/GeneticAlgorithm.h"
 
 TEST_CASE( "RandomRange APIs" ) {
     const int randint = RandomRange::random<int>(0,1);

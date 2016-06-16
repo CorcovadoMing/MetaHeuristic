@@ -18,7 +18,7 @@ ga:
 	@$(CPP) $(CPPFLAGS) $(SRC_FOLDER)/ga/*.cpp ga_$(MAIN_FILE) -o ga_$(EXE)
 
 test:
-	@$(CPP) $(CPPFLAGS) $(SRC_FOLDER)/ga/*.cpp $(TEST_FOLDER)/ga/*.cpp -o $(EXE) && ./$(EXE)
+	@$(CPP) $(CPPFLAGS) $(SRC_FOLDER)/ga/*.cpp $(TEST_FOLDER)/ga/*.cpp -o $(EXE) && ./$(EXE) && rm ./$(EXE)
 
 clean:
 	@rm ./*_$(EXE)
