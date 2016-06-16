@@ -48,11 +48,20 @@ const std::vector<double> ParticleSwarmOptimizer::runWithIteration(double iter, 
     for (size_t i = 0; i < iter; i += 1) {
         updateVelocity();
         updatePosition();
+        evaluate_();
+        print();
     }
     return getResult();
 }
 
 void ParticleSwarmOptimizer::updateVelocity() {
+    const double c1_rand = RandomRange::random<double>(0, 1);
+    const double c2_rand = RandomRange::random<double>(0, 1);
+    for (size_t i = 0; i < population_; i += 1) {
+        for (size_t j = 0; j < velocities_[i].size(); j += 1) {
+            velocities_[i][j] = (w_ * velocities_[i][j]) + (c1_ * c1_rand * (pbest_positions_[i][j] - positions_[i][j])) + (c2_ * c2_rand * (best_solution_[j] - positions_[i][j]));
+        }
+    }    
 }
 
 void ParticleSwarmOptimizer::updatePosition() {

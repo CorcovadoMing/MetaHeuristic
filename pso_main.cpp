@@ -20,7 +20,7 @@ int main(int argc, const char * argv[]) {
     param.Dimensions = 4;
     param.DimensionsInt = 2;
     
-    pso.runWithIteration(3, param);
+    pso.runWithIteration(20, param);
     pso.print();
 /*    
     // Result is fit into a vector
