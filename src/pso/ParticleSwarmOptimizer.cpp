@@ -56,6 +56,12 @@ void ParticleSwarmOptimizer::updateVelocity() {
 }
 
 void ParticleSwarmOptimizer::updatePosition() {
+    for (size_t i = 0; i < population_; i += 1) {
+        for (size_t j = 0; j < positions_[i].size(); j += 1) {
+            // TODO need to check the boundary
+            positions_[i][j] = positions_[i][j] + velocities_[i][j];
+        }
+    }
 } 
 
 void ParticleSwarmOptimizer::initial(const Parameters &Param) {
