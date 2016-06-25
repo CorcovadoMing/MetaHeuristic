@@ -13,9 +13,9 @@ public:
     int DimensionsInt = 0;
     std::vector<double> RangeMin, RangeMax;
     const double (*FitnessFunction) (const std::vector<double> &);
-    double w = 0.6;
-    double c1 = 0.7;
-    double c2 = 0.7;
+    double w = 0.6;   // random vector weight
+    double c1 = 0.7;  // personal best weight
+    double c2 = 0.7;  // global best weight
 };
 
 class ParticleSwarmOptimizer {
@@ -27,7 +27,7 @@ public:
     void initial(const Parameters &);
     void updateVelocity();
     void updatePosition();
-    const std::vector<double> runWithDuration(double);
+    const std::vector<double> runWithDuration(double, const Parameters &);
     const std::vector<double> runWithIteration(double, const Parameters &);
 
 private:

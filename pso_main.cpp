@@ -20,15 +20,17 @@ int main(int argc, const char * argv[]) {
     param.Dimensions = 4;
     param.DimensionsInt = 2;
     
-    pso.runWithIteration(20, param);
-    pso.print();
-/*    
+    //pso.runWithIteration(20, param);
+    pso.runWithDuration(5, param);
+    
+    //pso.print(); // Debug information
+    
     // Result is fit into a vector
     std::vector<double> result = pso.getResult();
     for (const auto i : result) {
         std::cout << i << " ";
     }
     std::cout << std::endl << "Fitness: " << pso.getFitness() << std::endl;
-*/
+    
     return 0;
 }

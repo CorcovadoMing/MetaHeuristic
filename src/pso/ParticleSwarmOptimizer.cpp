@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <fstream>
+#include <ctime>
 
 void ParticleSwarmOptimizer::print() const {
     std::cout << "=== Positions ===" << std::endl;
@@ -49,8 +50,18 @@ const std::vector<double> ParticleSwarmOptimizer::runWithIteration(double iter, 
         updateVelocity();
         updatePosition();
         evaluate_();
-        print();
     }
+    return getResult();
+}
+
+const std::vector<double> ParticleSwarmOptimizer::runWithDuration(double duration, const Parameters &param) {
+    initial(param);
+    auto start = clock();
+    while (clock()/CLOCKS_PER_SEC < duration) {
+        updateVelocity();
+        updatePosition();
+        evaluate_();
+    }   
     return getResult();
 }
 
